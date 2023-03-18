@@ -1,0 +1,50 @@
+@import url('https://fonts.googleapis.com/css?family=Raleway:400,500,600,700,800,900&display=swap');
+
+body {
+    font-family: 'Raleway', sans-serif !important;
+    background-color: #171824;
+    /* overflow: hidden; */
+}
+
+::-webkit-scrollbar {
+    background-color: transparent;
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #6D6D7950;
+    border-radius: 4px;
+}
+
+.flex-row-wrap {
+    flex-flow: row wrap;
+}
+
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    justify-content: center;
+    align-items: center;
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
+}
+
+.modal-image {
+    animation-name: appear;
+    animation-duration: 0.3s;
+}
+
+.selected {
+    background-color: #6D6D7933;
+}
+  
+@keyframes appear {
+    from {opacity:0}
+    to {opacity:1}
+}

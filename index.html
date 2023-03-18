@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="index.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+          theme: {
+            extend: {
+              colors: {
+                darklilac: '#171824',
+              }
+            }
+          }
+        }
+      </script>
+    <title>Tatiana Schejtman</title>
+    <script src="index.js"></script>
+</head>
+<body>
+    <div class="p-12">            
+        <div class="flex flex-row justify-between text-white text-base font-light mx-16">
+            <span>TATIANA SCHEJTMAN</span>
+            <div class="flex flex-row gap-8">
+                <span class="cursor-pointer">PORTFOLIO</span>
+                <span class="cursor-pointer">BEFORE/AFTER</span>
+                <span class="cursor-pointer">CONTACTO</span>
+            </div>
+        </div>
+        <div class="flex flex-col items-center">
+            
+            <span class="text-7xl text-white font-extrabold my-20">Portfolio Tatiana Schejtman</span>
+            <div class="flex flex-row w-4/5 mb-6 text-white text-xl gap-5">
+                <div class="boton rounded-lg p-4 cursor-pointer selected" id="retratos">
+                    <span>RETRATOS</span>
+                </div>
+                <div class="boton rounded-lg p-4 cursor-pointer" id="naturaleza">
+                    <span>NATURALEZA</span>
+                </div>
+                <div class="boton rounded-lg p-4 cursor-pointer" id="fotoproducto">
+                    <span>FOTO-PRODUCTO</span>
+                </div>
+            </div>
+            <div class="grid grid-cols-3 justify-center items-center w-4/5 gap-14" id="image-grid"></div>
+        </div>
+    </div>
+    <div class="modal" id="image-modal">
+        <img class="h-3/4 modal-image" id="modal-image" src="" alt="">
+    </div>
+</body>
+</html>
