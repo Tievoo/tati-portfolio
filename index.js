@@ -3,10 +3,16 @@ window.onload = function() {
     const amountMap = {
         'naturaleza': 4,
         'retratos': 9,
-        'fotoproducto': 2
+        'fotoproducto': 2,
+        'ba': 3
     }
 
+    const beforeAfter = document.getElementById('before-after');
+    const portfolio = document.getElementById('portfolio');
+    const contact = document.getElementById('contact');
+
     createImageGrid(amountMap['retratos'], 'retratos')
+    createBeforeAfterGrid()
     const imageModal = document.getElementById('image-modal');
     imageModal.addEventListener('click', (e) => {
         if(e.target.id !== 'modal-image') {
@@ -14,8 +20,6 @@ window.onload = function() {
             imageModal.classList.add('hidden');    
         }
     })
-
-    
 
     const buttons = document.querySelectorAll('.boton');
     buttons.forEach(button => {
@@ -27,6 +31,61 @@ window.onload = function() {
             createImageGrid(amountMap[section], section);
         })
     });
+
+    const toBeforeAfter = document.getElementById('to-before-after');
+    toBeforeAfter.addEventListener('click', () => {
+        if(beforeAfter.classList.contains('hidden')) {
+            beforeAfter.classList.remove('hidden');
+            beforeAfter.classList.add('flex');
+            portfolio.classList.remove('flex');
+            portfolio.classList.add('hidden');
+        }
+    })
+
+    const toPortfolio = document.getElementById('to-portfolio');
+    toPortfolio.addEventListener('click', () => {
+        if(portfolio.classList.contains('hidden')) {
+            portfolio.classList.remove('hidden');
+            portfolio.classList.add('flex');
+            beforeAfter.classList.remove('flex');
+            beforeAfter.classList.add('hidden');
+        }
+    })
+
+    const toContact = document.getElementById('to-contact');
+    toContact.addEventListener('click', () => {
+        contact.scrollIntoView({behavior: 'smooth'});
+    })
+}
+
+function createBeforeAfterGrid() {
+    const AMOUNT = 3;
+    const baGrid = document.getElementById('ba-grid');
+    baGrid.innerHTML = '';
+    for (let i = 1; i <= AMOUNT; i++) {
+        const before = document.createElement('img');
+        const after = document.createElement('img');
+        before.src = `./assets/images/beforeafter/b${i}.png`;
+        after.src = `./assets/images/beforeafter/a${i}.png`;
+        before.alt = `Imagen before ${i}`;
+        after.alt = `Imagen after ${i}`;
+        before.className = 'ba-grid_image cursor-pointer'
+        after.className = 'ba-grid_image cursor-pointer'
+        baGrid.appendChild(before);
+        baGrid.appendChild(after);
+        before.addEventListener('click', () => {
+            const imageSrc = before.src;
+            imageModal.lastElementChild.src = imageSrc;
+            imageModal.classList.remove('hidden');
+            imageModal.classList.add('flex');
+        })
+        after.addEventListener('click', () => {
+            const imageSrc = after.src;
+            imageModal.lastElementChild.src = imageSrc;
+            imageModal.classList.remove('hidden');
+            imageModal.classList.add('flex');
+        })
+    }
 }
 
 function createImageGrid(amount, section) {

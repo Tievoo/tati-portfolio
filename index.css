@@ -3,6 +3,7 @@
 body {
     font-family: 'Raleway', sans-serif !important;
     background-color: #171824;
+    scroll-behavior: smooth !important;
     /* overflow: hidden; */
 }
 
