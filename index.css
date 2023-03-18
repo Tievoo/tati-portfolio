@@ -42,10 +42,44 @@ body {
 }
 
 .selected {
-    background-color: #6D6D7933;
+    background-color: #6D6D7933 !important;
 }
   
 @keyframes appear {
     from {opacity:0}
     to {opacity:1}
+}
+
+.boton {
+    background-color: #6D6D7900;
+    transition: .3s;
+}
+
+.boton:hover {
+    background-color: #6D6D7910;
+    transition: .3s;
+}
+
+.boton.selected:hover {
+    background-color: #6D6D7933 !important;
+}
+
+.topbar-link:hover {
+    color: #acacb9;
+    transition: .3s;
+}
+
+.topbar-link {
+    color: #fff;
+    transition: .3s;
+}
+
+.image-grid_image {
+    opacity: 1;
+    transition: .3s;
+}
+
+.image-grid_image:hover {
+    opacity: 0.7;
+    transition: .3s;
 }

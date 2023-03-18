@@ -52,6 +52,16 @@ window.onload = function() {
         }
     })
 
+    const toPortfolio2 = document.getElementById('to-portfolio-2');
+    toPortfolio2.addEventListener('click', () => {
+        if(portfolio.classList.contains('hidden')) {
+            portfolio.classList.remove('hidden');
+            portfolio.classList.add('flex');
+            beforeAfter.classList.remove('flex');
+            beforeAfter.classList.add('hidden');
+        }
+    })
+
     const toContact = document.getElementById('to-contact');
     toContact.addEventListener('click', () => {
         contact.scrollIntoView({behavior: 'smooth'});
@@ -61,6 +71,7 @@ window.onload = function() {
 function createBeforeAfterGrid() {
     const AMOUNT = 3;
     const baGrid = document.getElementById('ba-grid');
+    const imageModal = document.getElementById('image-modal');
     baGrid.innerHTML = '';
     for (let i = 1; i <= AMOUNT; i++) {
         const before = document.createElement('img');
@@ -71,8 +82,7 @@ function createBeforeAfterGrid() {
         after.alt = `Imagen after ${i}`;
         before.className = 'ba-grid_image cursor-pointer'
         after.className = 'ba-grid_image cursor-pointer'
-        baGrid.appendChild(before);
-        baGrid.appendChild(after);
+        
         before.addEventListener('click', () => {
             const imageSrc = before.src;
             imageModal.lastElementChild.src = imageSrc;
@@ -85,6 +95,8 @@ function createBeforeAfterGrid() {
             imageModal.classList.remove('hidden');
             imageModal.classList.add('flex');
         })
+        baGrid.appendChild(before);
+        baGrid.appendChild(after);
     }
 }
 
