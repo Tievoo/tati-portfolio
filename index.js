@@ -150,10 +150,14 @@ function createImageGrid(amount, section) {
     imageGrid.innerHTML = '';
     for (let i = 1; i <= amount; i++) {
         const image = document.createElement('img');
+        
         image.src = `./assets/images/${section}/preview/${i}.webp`;
         image.alt = `Imagen ${i}`;
         image.className = 'image-grid_image cursor-pointer'
         imageGrid.appendChild(image);
+        const preloadImage = new Image()
+        preloadImage.src = `./assets/images/${section}/${i}.webp`;
+
         image.addEventListener('click', () => {
             const imageSrc = image.src.replace('/preview', '');
             imageModal.lastElementChild.src = imageSrc;
