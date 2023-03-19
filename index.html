@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="index.css">
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="preloader.css">
+    <!-- <link rel="stylesheet" href="preloader.css"> -->
     <script>
         tailwind.config = {
           theme: {
@@ -76,5 +76,13 @@
     <div class="modal" id="image-modal">
         <img class="h-3/4 modal-image" id="modal-image" src="" alt="">
     </div>
+    <script>
+        var portraitThumbs = Array(9).fill(new Image()).forEach(im => im.src = `assets/images/retratos/preview/${i}.png`)
+        var portraitFulls = Array(9).fill(new Image()).forEach(im => im.src = `assets/images/retratos/${i}.png`)
+        var natureThumbs = Array(4).fill(new Image()).forEach(im => im.src = `assets/images/naturaleza/preview/${i}.png`)
+        var natureFulls = Array(4).fill(new Image()).forEach(im => im.src = `assets/images/naturaleza/${i}.png`)
+        var productThumbs = Array(2).fill(new Image()).forEach(im => im.src = `assets/images/fotoproducto/preview/${i}.png`)
+        var productFulls = Array(2).fill(new Image()).forEach(im => im.src = `assets/images/fotoproducto/${i}.png`)
+    </script>
 </body>
 </html>
