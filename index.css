@@ -74,12 +74,32 @@ body {
     transition: .3s;
 }
 
+.go-back {
+    background-color: #fff;
+    -webkit-mask: url('assets/svg/arrow.svg') no-repeat center;
+    mask: url('assets/svg/arrow.svg') no-repeat center;
+    min-width:40px;
+    min-height:20px;
+    transition: .3s;
+}
+
+.go-back:hover {
+    background-color: #acacb9;
+    transition: .3s;
+}
+
+
 .image-grid_image {
     opacity: 1;
     transition: .3s;
+    animation: appear 0.3s;
 }
 
 .image-grid_image:hover {
     opacity: 0.7;
     transition: .3s;
+}
+
+.language-change {
+    max-width: 30px;
 }

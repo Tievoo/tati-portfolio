@@ -1,4 +1,43 @@
+
+
 window.onload = function() {
+    const languageMap = {
+        beforeafter: {
+            eng: 'BEFORE/AFTER',
+            esp: 'ANTES/DESPUÉS'
+        },
+        retratos: {
+            eng: 'PORTRAITS',
+            esp: 'RETRATOS'
+        },
+        naturaleza: {
+            eng: 'NATURE',
+            esp: 'NATURALEZA'
+        },
+        fotoproducto: {
+            eng: 'PRODUCTS',
+            esp: 'FOTO-PRODUCTO'
+        },
+        contact: {
+            eng: 'CONTACT',
+            esp: 'CONTACTO'
+        }
+    }
+
+    const languageChange = document.querySelectorAll('.language-change');
+    languageChange.forEach(language => {
+        language.addEventListener('click', (e) => {
+            const languageChanges = document.querySelectorAll('.language');
+            const languageKey = e.target.id;
+            languageChanges.forEach(languageChange => {
+                let key = languageChange.id || languageChange.parentElement.id;
+                if(key.split('-').length > 1) {
+                    key = key.split('-')[1];
+                }
+                languageChange.innerHTML = languageMap[key][languageKey];
+            });
+        })
+    });
 
     const amountMap = {
         'naturaleza': 4,
@@ -7,7 +46,7 @@ window.onload = function() {
         'ba': 3
     }
 
-    const beforeAfter = document.getElementById('before-after');
+    const beforeAfter = document.getElementById('beforeafter');
     const portfolio = document.getElementById('portfolio');
     const contact = document.getElementById('contact');
 
@@ -32,7 +71,12 @@ window.onload = function() {
         })
     });
 
-    const toBeforeAfter = document.getElementById('to-before-after');
+    const goBack = document.getElementById('go-back');
+    goBack.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth'});
+    });
+
+    const toBeforeAfter = document.getElementById('to-beforeafter');
     toBeforeAfter.addEventListener('click', () => {
         if(beforeAfter.classList.contains('hidden')) {
             beforeAfter.classList.remove('hidden');
@@ -118,3 +162,4 @@ function createImageGrid(amount, section) {
         })
     }
 }
+
