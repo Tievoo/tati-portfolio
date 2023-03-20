@@ -33,7 +33,7 @@
                 <span class="cursor-pointer topbar-link language" id="to-beforeafter">ANTES/DESPUÉS</span>
                 <span class="cursor-pointer topbar-link language" id="to-contact">CONTACTO</span>
                 <div class="flex flex-row gap-3">
-                    <img id="esp" class="language-change cursor-pointer" src="assets/svg/argentina.svg" alt="">
+                    <img id="esp" class="language-change cursor-pointer selected-language" src="assets/svg/argentina.svg" alt="">
                     <img id="eng" class="language-change cursor-pointer"src="assets/svg/uk.svg" alt="">
                 </div>
             </div>
@@ -76,13 +76,5 @@
     <div class="modal" id="image-modal">
         <img class="h-3/4 modal-image" id="modal-image" src="" alt="">
     </div>
-    <script>
-        var portraitThumbs = Array(9).fill(new Image()).forEach((im, i) => im.src = `assets/images/retratos/preview/${i}.webp`)
-        var portraitFulls = Array(9).fill(new Image()).forEach((im, i) => im.src = `assets/images/retratos/${i}.webp`)
-        var natureThumbs = Array(4).fill(new Image()).forEach((im, i) => im.src = `assets/images/naturaleza/preview/${i}.webp`)
-        var natureFulls = Array(4).fill(new Image()).forEach((im, i) => im.src = `assets/images/naturaleza/${i}.webp`)
-        var productThumbs = Array(2).fill(new Image()).forEach((im, i) => im.src = `assets/images/fotoproducto/preview/${i}.webp`)
-        var productFulls = Array(2).fill(new Image()).forEach((im, i) => im.src = `assets/images/fotoproducto/${i}.webp`)
-    </script>
 </body>
 </html>

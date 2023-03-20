@@ -27,6 +27,10 @@ window.onload = function() {
     const languageChange = document.querySelectorAll('.language-change');
     languageChange.forEach(language => {
         language.addEventListener('click', (e) => {
+            const selectedLanguage = document.querySelector('.selected-language');
+            selectedLanguage.classList.remove('selected-language');
+            language.classList.add('selected-language');
+
             const languageChanges = document.querySelectorAll('.language');
             const languageKey = e.target.id;
             languageChanges.forEach(languageChange => {
