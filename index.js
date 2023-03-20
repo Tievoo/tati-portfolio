@@ -27,6 +27,10 @@ window.onload = function() {
     const languageChange = document.querySelectorAll('.language-change');
     languageChange.forEach(language => {
         language.addEventListener('click', (e) => {
+            const selectedLanguage = document.querySelector('.selected-language');
+            selectedLanguage.classList.remove('selected-language');
+            language.classList.add('selected-language');
+
             const languageChanges = document.querySelectorAll('.language');
             const languageKey = e.target.id;
             languageChanges.forEach(languageChange => {
@@ -120,8 +124,8 @@ function createBeforeAfterGrid() {
     for (let i = 1; i <= AMOUNT; i++) {
         const before = document.createElement('img');
         const after = document.createElement('img');
-        before.src = `./assets/images/beforeafter/b${i}.png`;
-        after.src = `./assets/images/beforeafter/a${i}.png`;
+        before.src = `./assets/images/beforeafter/b${i}.webp`;
+        after.src = `./assets/images/beforeafter/a${i}.webp`;
         before.alt = `Imagen before ${i}`;
         after.alt = `Imagen after ${i}`;
         before.className = 'ba-grid_image cursor-pointer'
@@ -150,10 +154,14 @@ function createImageGrid(amount, section) {
     imageGrid.innerHTML = '';
     for (let i = 1; i <= amount; i++) {
         const image = document.createElement('img');
-        image.src = `./assets/images/${section}/preview/${i}.png`;
+        
+        image.src = `./assets/images/${section}/preview/${i}.webp`;
         image.alt = `Imagen ${i}`;
         image.className = 'image-grid_image cursor-pointer'
         imageGrid.appendChild(image);
+        const preloadImage = new Image()
+        preloadImage.src = `./assets/images/${section}/${i}.webp`;
+
         image.addEventListener('click', () => {
             const imageSrc = image.src.replace('/preview', '');
             imageModal.lastElementChild.src = imageSrc;

@@ -1,0 +1,18 @@
+body::after{
+    position:absolute; width:0; height:0; overflow:hidden; z-index:-1;
+    content:url(assets/images/retratos/preview/1.webp)
+            url(assets/images/retratos/preview/2.webp)
+            url(assets/images/retratos/preview/3.webp)
+            url(assets/images/retratos/preview/4.webp)
+            url(assets/images/retratos/preview/5.webp)
+            url(assets/images/retratos/preview/6.webp)
+            url(assets/images/retratos/preview/7.webp)
+            url(assets/images/retratos/preview/8.webp)
+            url(assets/images/retratos/preview/9.webp)
+            url(assets/images/naturaleza/preview/1.webp)
+            url(assets/images/naturaleza/preview/2.webp)
+            url(assets/images/naturaleza/preview/3.webp)
+            url(assets/images/naturaleza/preview/4.webp)
+            url(assets/images/fotoproducto/preview/1.webp)
+            url(assets/images/fotoproducto/preview/2.webp)
+}

@@ -88,6 +88,35 @@ body {
     transition: .3s;
 }
 
+#esp {
+    border: 0.1px solid transparent;
+    border-radius: 50%;
+    transition: 0.1s;
+}
+
+#eng {
+    border: 0.1px solid transparent;
+    border-radius: 50%;
+    transition: 0.1s;
+}
+
+#esp:hover {
+    opacity: 0.5;
+    transition: .1s;
+}
+
+#eng:hover {
+    opacity: 0.5;
+    transition: .1s;
+}
+
+
+.selected-language {
+    border: 4px solid #6D6D7960 !important;
+    border-radius: 50% !important;
+    transition: 0.1s;
+}
+
 
 .image-grid_image {
     opacity: 1;
