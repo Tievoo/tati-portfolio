@@ -1,0 +1,20 @@
+---
+import Cover from "../components/cover.astro";
+import Base from "../layouts/base.astro";
+import { Covers } from "../scripts/Covers";
+
+// This is the main entry point for the Astro application.
+---
+
+<Base pageTitle="Tatiana Schejtman">
+    <div class="flex flex-col gap-4 items-center justify-center text-white">
+        <h1 class="text-4xl font-medium text-c-white uppercase mb-3">Tatiana Schejtman</h1>
+        <div class="grid grid-cols-2 gap-4">
+            {Covers.map((cover) => (
+                <Cover
+                    data={cover}
+                />
+            ))}
+        </div>
+    </div>
+</Base>

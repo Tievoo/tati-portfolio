@@ -1,0 +1,14 @@
+@import "tailwindcss";
+
+@theme {
+    --color-c-gray: #222;
+    --color-c-black: #111;
+
+    --font-oswald: "Oswald", "sans-serif";
+}
+
+body {
+    min-height: 100vh;
+    background-color: var(--color-c-black);
+    font-family: var(--font-oswald);
+}
