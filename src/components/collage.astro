@@ -1,0 +1,19 @@
+---
+const { images } = Astro.props;
+---
+
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+    {images.map((image: any) => (
+        <div class="relative group">
+            <img
+                src={image.src}
+                alt={image.alt}
+                width={image.width}
+                height={image.height}
+                loading="eager"
+                class="w-full h-auto object-cover"
+            />
+        </div>
+    ))}
+</div>
+
