@@ -6,20 +6,6 @@ import type { Cover } from '../types';
 
 export const Covers : Cover[] = [
     {
-        alt: 'Portada de Antes y Después',
-        src: ByA,
-        title: 'Antes y Después',
-        subtitle: '2021-2025',
-        path: '/bya'
-    },
-    {
-        alt: 'Portada de Fotoproducto',
-        src: Fotoproducto,
-        title: 'Fotoproducto',
-        subtitle: '2019-2025',
-        path: '/fotoproducto'
-    },
-    {
         alt: 'Portada de Retrato',
         src: Retrato,
         title: 'Retrato',
@@ -32,5 +18,19 @@ export const Covers : Cover[] = [
         title: 'Naturaleza',
         subtitle: '2019-2025',
         path: '/naturaleza'
+    },
+    {
+        alt: 'Portada de Antes y Después',
+        src: ByA,
+        title: 'Antes y Después',
+        subtitle: '2021-2025',
+        path: '/bya'
+    },
+    {
+        alt: 'Portada de Fotoproducto',
+        src: Fotoproducto,
+        title: 'Fotoproducto',
+        subtitle: '2019-2025',
+        path: '/fotoproducto'
     }
 ]
