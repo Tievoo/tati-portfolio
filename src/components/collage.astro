@@ -25,6 +25,12 @@ const images = Images[pageName] || [];
     }
 </div>
 <script>
+    // Por si volves a este código en el futuro, sabe que todos los valores están hardcodeados
+    // 1126 y 502 son los valores originales de las imágenes horizontales y verticales respectivamente
+    // 752 es la altura de las imágenes, que es la misma para todas
+    // 0.8 es el factor en el que escalo las imagenes porque quiero que esten más comprimidas
+    // el 2*12 es el gap entre las imágenes. hay un ml de 12px además para que quede centrado
+    
 
     function updateCollageWidth() {
         const screenWidth = (window.innerWidth - window.innerWidth * 0.1);
@@ -47,13 +53,8 @@ const images = Images[pageName] || [];
         const images = collage.querySelectorAll("img");
         images.forEach((img) => {
             const orientation = img.dataset.orientation;
-            if (orientation === "hor") {
-                img.style.width = `${HOR_WIDTH * SCALE}px`;
-                img.style.height = `${HEIGHT * SCALE}px`;
-            } else if (orientation === "ver") {
-                img.style.width = `${VER_WIDTH * SCALE}px`;
-                img.style.height = `${HEIGHT * SCALE}px`;
-            }
+            img.style.width = `${(orientation === "hor" ? HOR_WIDTH : VER_WIDTH) * SCALE}px`;
+            img.style.height = `${HEIGHT * SCALE}px`;
         });
 
     }
