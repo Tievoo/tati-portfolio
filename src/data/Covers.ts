@@ -2,8 +2,9 @@ import ByA from '../assets/covers/bya.png';
 import Fotoproducto from '../assets/covers/fotoproducto.png';
 import Retrato from '../assets/covers/retrato.png';
 import Naturaleza from '../assets/covers/naturaleza.png';
+import type { Cover } from '../types';
 
-export const Covers = [
+export const Covers : Cover[] = [
     {
         alt: 'Portada de Antes y Después',
         src: ByA,

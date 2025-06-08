@@ -1,19 +1,65 @@
 ---
-const { images } = Astro.props;
+import Image from "astro/components/Image.astro";
+import type { GalleryPic } from "../types";
+import { Images } from "../data/Images";
+
+const pageName = Astro.props["name"];
+const images = Images[pageName] || [];
 ---
 
-<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-    {images.map((image: any) => (
-        <div class="relative group">
-            <img
-                src={image.src}
-                alt={image.alt}
-                width={image.width}
-                height={image.height}
-                loading="eager"
-                class="w-full h-auto object-cover"
-            />
-        </div>
-    ))}
+<div id="collage" class="flex flex-wrap w-full max-w-screen gap-[12px] ml-[12px]">
+    {
+        images.map((image: GalleryPic) => {
+            return (
+                <Image
+                    src={image.src}
+                    alt={image.alt}
+                    width={image.width! * 0.8}
+                    height={image.height! * 0.8}
+                    data-orientation={image.orientation}
+                    class=""
+                    loading="lazy"
+                />
+            );
+        })
+    }
 </div>
+<script>
 
+    function updateCollageWidth() {
+        const screenWidth = (window.innerWidth - window.innerWidth * 0.1);
+        let pairAmount = 0;
+        if (window.innerWidth >= 1280) pairAmount = 2;
+        else pairAmount = 1;
+
+        const HOR_WIDTH = 1126*0.8
+        const VER_WIDTH = 502*0.8
+        const HEIGHT = 752*0.8
+        const REL = HOR_WIDTH / VER_WIDTH;
+
+        const PAIR_CONTAINER = (screenWidth / pairAmount) - 2*12; // 24px is the gap between images
+        const R_VER_WIDTH = PAIR_CONTAINER/(REL+1)
+        const SCALE = R_VER_WIDTH / VER_WIDTH;
+
+        const collage = document.getElementById("collage");
+        if (!collage) return;
+        collage.style.width = `${screenWidth}px`;
+        const images = collage.querySelectorAll("img");
+        images.forEach((img) => {
+            const orientation = img.dataset.orientation;
+            if (orientation === "hor") {
+                img.style.width = `${HOR_WIDTH * SCALE}px`;
+                img.style.height = `${HEIGHT * SCALE}px`;
+            } else if (orientation === "ver") {
+                img.style.width = `${VER_WIDTH * SCALE}px`;
+                img.style.height = `${HEIGHT * SCALE}px`;
+            }
+        });
+
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+        updateCollageWidth();
+        window.addEventListener("resize", updateCollageWidth);
+    });
+</script>

@@ -11,6 +11,7 @@ body {
     min-height: 100vh;
     background-color: var(--color-c-black);
     font-family: var(--font-oswald);
+    box-sizing: border-box;
 }
 
 @font-face {
