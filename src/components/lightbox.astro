@@ -19,10 +19,10 @@
     const overlay = document.getElementById("lightbox-overlay");
     const overlayImg = document.getElementById("lightbox-img");
 
-    document.querySelectorAll("[data-full-img]").forEach((el) => {
+    document.querySelectorAll(".lightbox-trigger").forEach((el) => {
         el.addEventListener("click", () => {
-            const src = el.getAttribute("data-full-img");
-            const alt = el.getAttribute("data-alt") || "";
+            const src = el.src;
+            const alt = el.alt || "Imagen ampliada";
             overlayImg.src = src;
             overlayImg.alt = alt;
             overlay.style.opacity = "1";

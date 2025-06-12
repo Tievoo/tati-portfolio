@@ -44,15 +44,15 @@ for (let i = 0; i < images.length; ) {
                             <div
                                 class="cursor-pointer"
                                 style={`width: calc(50% - 0.375rem); aspect-ratio: ${img.width}/${img.height};`}
-                                data-full-img={img.src.src}
-                                data-alt={img.alt}
+                                // data-full-img={img.src.src}
+                                // data-alt={img.alt}
                             >
                                 <Image
                                     src={img.src}
                                     alt={img.alt}
                                     width={img.width}
                                     height={img.height}
-                                    class="w-full h-full object-cover"
+                                    class="w-full h-full object-cover lightbox-trigger"
                                     loading="eager"
                                 />
                             </div>
@@ -72,7 +72,7 @@ for (let i = 0; i < images.length; ) {
                             alt={block.alt}
                             width={block.width}
                             height={block.height}
-                            class="w-full h-full object-cover"
+                            class="w-full h-full object-cover lightbox-trigger"
                             loading="eager"
                         />
                     </div>
