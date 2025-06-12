@@ -1,0 +1,37 @@
+// Por si volves a este código en el futuro, sabe que todos los valores están hardcodeados
+// 1126 y 502 son los valores originales de las imágenes horizontales y verticales respectivamente
+// 752 es la altura de las imágenes, que es la misma para todas
+// 0.8 es el factor en el que escalo las imagenes porque quiero que esten más comprimidas
+// el 2*12 es el gap entre las imágenes. hay un ml de 12px además para que quede centrado
+
+
+function updateCollageWidthPairs() {
+    const screenWidth = (window.innerWidth - window.innerWidth * 0.1);
+    let pairAmount = 0;
+    if (window.innerWidth >= 1280) pairAmount = 2;
+    else pairAmount = 1;
+
+    const HOR_WIDTH = 1126 * 0.8
+    const VER_WIDTH = 502 * 0.8
+    const HEIGHT = 752 * 0.8
+    const REL = HOR_WIDTH / VER_WIDTH;
+
+    const PAIR_CONTAINER = (screenWidth / pairAmount) - 2 * 12; // 24px is the gap between images
+    const R_VER_WIDTH = PAIR_CONTAINER / (REL + 1)
+    const SCALE = R_VER_WIDTH / VER_WIDTH;
+
+    const collage = document.getElementById("collage");
+    if (!collage) return;
+    collage.style.width = `${screenWidth}px`;
+    const images = collage.querySelectorAll("img");
+    images.forEach((img) => {
+        const orientation = img.dataset.orientation;
+        img.style.width = `${(orientation === "hor" ? HOR_WIDTH : VER_WIDTH) * SCALE}px`;
+        img.style.height = `${HEIGHT * SCALE}px`;
+    });
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+    updateCollageWidthPairs();
+    window.addEventListener("resize", updateCollageWidthPairs);
+});

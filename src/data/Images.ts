@@ -3,6 +3,7 @@ import type { GalleryPic } from "../types";
 
 const imageLoaders = {
     retrato: () => import.meta.glob('../assets/retrato/*.png', { eager: true, import: 'default' }),
+    naturaleza: () => import.meta.glob('../assets/naturaleza/*.png', { eager: true, import: 'default' })
 };
 
 function importPics(glob: () => Record<string, any>) {
@@ -25,4 +26,5 @@ function importPics(glob: () => Record<string, any>) {
 
 export const Images : Record<string, GalleryPic[]> = {
     retrato: importPics(imageLoaders.retrato),
+    naturaleza: importPics(imageLoaders.naturaleza)
 }
