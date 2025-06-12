@@ -2,6 +2,7 @@
 import Image from "astro/components/Image.astro";
 import type { GalleryPic } from "../types";
 import { Images } from "../data/Images";
+import Lightbox from "./lightbox.astro";
 
 const pageName = Astro.props["name"];
 const images = Images[pageName] || [];
@@ -36,13 +37,15 @@ for (let i = 0; i < images.length; ) {
     {
         blocks.map((block) => {
             if (Array.isArray(block)) {
-                // Dos verticales una al lado de la otra
                 const [v1, v2] = block;
                 return (
                     <div class="flex flex-row gap-3 w-full">
                         {[v1, v2].map((img) => (
                             <div
+                                class="cursor-pointer"
                                 style={`width: calc(50% - 0.375rem); aspect-ratio: ${img.width}/${img.height};`}
+                                data-full-img={img.src.src}
+                                data-alt={img.alt}
                             >
                                 <Image
                                     src={img.src}
@@ -57,11 +60,12 @@ for (let i = 0; i < images.length; ) {
                     </div>
                 );
             } else {
-                // Imagen horizontal sola
                 return (
                     <div
-                        class="w-full"
+                        class="cursor-pointer w-full"
                         style={`aspect-ratio: ${block.width}/${block.height};`}
+                        data-full-img={block.src.src}
+                        data-alt={block.alt}
                     >
                         <Image
                             src={block.src}
@@ -77,3 +81,5 @@ for (let i = 0; i < images.length; ) {
         })
     }
 </div>
+
+<Lightbox />

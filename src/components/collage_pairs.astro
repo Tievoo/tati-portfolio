@@ -2,6 +2,7 @@
 import Image from "astro/components/Image.astro";
 import type { GalleryPic } from "../types";
 import { Images } from "../data/Images";
+import Lightbox from "./lightbox.astro";
 
 const pageName = Astro.props["name"];
 const images = Images[pageName] || [];
@@ -47,8 +48,10 @@ const imagePairs = pairImages(images);
                             alt={img1.alt}
                             width={w1}
                             height={h1}
-                            class="w-full h-full object-cover"
+                            class="w-full h-full object-cover cursor-pointer"
                             loading="eager"
+                            data-full-img={img1.src.src}
+                            data-alt={img1.alt}
                         />
                     </div>
                     {
@@ -59,8 +62,10 @@ const imagePairs = pairImages(images);
                                 alt={img2.alt}
                                 width={w2}
                                 height={h2}
-                                class="w-full h-full object-cover"
+                                class="w-full h-full object-cover cursor-pointer"
                                 loading="eager"
+                                data-full-img={img2.src.src}
+                                data-alt={img2.alt}
                             />
                         </div>
                     }
@@ -70,3 +75,4 @@ const imagePairs = pairImages(images);
     }
 </div>
 
+<Lightbox />
