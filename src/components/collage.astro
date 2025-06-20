@@ -6,6 +6,7 @@ import Lightbox from "./lightbox.astro";
 
 const pageName = Astro.props["name"];
 const images = Images[pageName] || [];
+const { colsOnMobile = "grid-cols-1", colsOnDesktop = "xl:grid-cols-4" } = Astro.props;
 
 // Agrupar imágenes en bloques: horizontales solas, verticales de a dos
 type Block = GalleryPic | [GalleryPic, GalleryPic?];
@@ -32,7 +33,7 @@ for (let i = 0; i < images.length; ) {
 
 <div
     id="collage"
-    class="grid gap-3 grid-cols-1 xl:grid-cols-4 px-[5vw] w-full max-w-screen"
+    class={`grid gap-3 ${colsOnMobile} ${colsOnDesktop} px-[5vw] w-full max-w-screen`}
 >
     {
         blocks.map((block) => {
