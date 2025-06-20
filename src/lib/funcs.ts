@@ -10,7 +10,7 @@ export function divideInto<T>(arr: T[], size: number): T[][] {
 
 export function calcRatio(img1: GalleryPic, img2?: GalleryPic): [number, number | undefined]  {
     if (img1.orientation === 'hor' && img2?.orientation === 'ver') {
-        return [ 66, 33 ];
+        return [ 67, 33 ];
     } else if (img1.orientation === 'ver' && img2?.orientation === 'hor') {
         return [ 33, 66 ];
     } else {
