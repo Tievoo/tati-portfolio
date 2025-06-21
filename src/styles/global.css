@@ -27,6 +27,8 @@ body {
     width: calc(100% - 0.375rem);
 }
 
+
+
 @media (min-width: 1279px) {
     .pair-12\.5 {
         width: calc(12.5% - 0.375rem);
@@ -37,11 +39,17 @@ body {
     .pair-37\.5 {
         width: calc(37.5% - 0.375rem);
     }
+    .pair-40 {
+        width: calc(40% - 0.375rem);
+    }
     .pair-50 {
         width: calc(50% - 0.375rem);
     }
     .pair-75 {
         width: calc(75% - 0.375rem);
+    }
+    .pair-80 {
+        width: calc(80% - 0.375rem);
     }
 }
 

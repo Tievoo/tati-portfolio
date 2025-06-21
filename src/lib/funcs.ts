@@ -12,7 +12,7 @@ export function calcRatio(img1: GalleryPic, img2?: GalleryPic): [number, number 
     if (img1.orientation === 'hor' && img2?.orientation === 'ver') {
         return [ 67, 33 ];
     } else if (img1.orientation === 'ver' && img2?.orientation === 'hor') {
-        return [ 33, 66 ];
+        return [ 33, 67 ];
     } else {
         const totalWidth = img1.width! + (img2?.width || 0) || 1;
         const pct1 = (img1.width! / totalWidth) * 100;
