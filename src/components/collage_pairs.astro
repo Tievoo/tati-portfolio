@@ -1,73 +1,33 @@
 ---
 import Image from "astro/components/Image.astro";
-import type { GalleryPic } from "../types";
 import { Images } from "../data/Images";
 import Lightbox from "./lightbox.astro";
-import { calcRatio } from "../lib/funcs";
 
 const pageName = Astro.props["name"];
 const images = Images[pageName] || [];
 const { horWidth = 37.5, verWidth = 12.5 } = Astro.props;
-
-// Agrupa de a pares
-function pairImages(images: GalleryPic[]): [GalleryPic, GalleryPic | undefined][] {
-    const pairs: [GalleryPic, GalleryPic | undefined][] = [];
-    for (let i = 0; i < images.length; i += 2) {
-        pairs.push([images[i], images[i + 1]]);
-    }
-    return pairs;
-}
-
-const imagePairs = pairImages(images);
 ---
-<div id="collage" class="flex flex-wrap w-full max-w-screen px-[5vw] gap-3">
+
+<div id="collage" class="flex flex-wrap w-full max-w-screen pl-[calc(5vw_+_0.750rem)] pr-[5vw] gap-3">
     {
-        imagePairs.map(([img1, img2]) => {
-            const w1 = img1.width!;
-            const h1 = img1.height!;
-            const w2 = img2?.width ?? 0;
-            const h2 = img2?.height ?? 1;
+        images.map((img) => {
+            const w1 = img.width!;
+            const h1 = img.height!;
 
-            const [pct1, pct2] = calcRatio(
-                img1, img2
-            );
-
-            const pctCalc1 = `calc(${pct1}% - ${img2 ? '0.375' : '0.375'}rem)`;
-            const pctCalc2 = `calc(${pct2}% - 0.375rem)`;
-
-            const divWidth = (img1.orientation === "hor" ? horWidth : verWidth) + (
-                img2 ? img2.orientation === "hor" ? horWidth : verWidth : 0
-            );
+            const divWidth = img.orientation === "hor" ? horWidth : verWidth;
 
             const pctClass = `pair-${divWidth}`;
 
             return (
-                <div
-                    class={`flex gap-3 w-full ${pctClass}`}
-                >
-                    <div style={`width: ${pctCalc1}; aspect-ratio: ${w1}/${h1};`}>
-                        <Image
-                            src={img1.src}
-                            alt={img1.alt}
-                            width={w1}
-                            height={h1}
-                            class="w-full h-full object-cover cursor-pointer lightbox-trigger"
-                            loading="eager"
-                        />
-                    </div>
-                    {
-                        img2 &&
-                        <div style={`width: ${pctCalc2}; aspect-ratio: ${w2}/${h2};`}>
-                            <Image
-                                src={img2.src}
-                                alt={img2.alt}
-                                width={w2}
-                                height={h2}
-                                class="w-full h-full object-cover cursor-pointer lightbox-trigger"
-                                loading="eager"
-                            />
-                        </div>
-                    }
+                <div style={`aspect-ratio: ${w1}/${h1};`} class={pctClass}>
+                    <Image
+                        src={img.src}
+                        alt={img.alt}
+                        width={w1}
+                        height={h1}
+                        class="w-full h-full object-cover cursor-pointer lightbox-trigger"
+                        loading="eager"
+                    />
                 </div>
             );
         })
