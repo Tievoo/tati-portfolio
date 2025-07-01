@@ -5,6 +5,7 @@ const imageLoaders = {
     retrato: () => import.meta.glob('../assets/retrato/*.png', { eager: true, import: 'default' }),
     naturaleza: () => import.meta.glob('../assets/naturaleza/*.png', { eager: true, import: 'default' }),
     fotoproducto: () => import.meta.glob('../assets/fotoproducto/*.png', { eager: true, import: 'default' }),
+    bya: () => import.meta.glob('../assets/bya/*.png', { eager: true, import: 'default' }),
 };
 
 function importPics(glob: () => Record<string, any>) {
@@ -28,5 +29,6 @@ function importPics(glob: () => Record<string, any>) {
 export const Images : Record<string, GalleryPic[]> = {
     retrato: importPics(imageLoaders.retrato),
     naturaleza: importPics(imageLoaders.naturaleza),
-    fotoproducto: importPics(imageLoaders.fotoproducto)
+    fotoproducto: importPics(imageLoaders.fotoproducto),
+    bya: importPics(imageLoaders.bya),
 }
