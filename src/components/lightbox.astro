@@ -1,0 +1,50 @@
+---
+---
+
+<!-- Lightbox Overlay -->
+<div
+    id="lightbox-overlay"
+    class="transition-opacity fixed inset-0 bg-black/80 flex items-center justify-center"
+    style="opacity: 0; z-index: -1;"
+>
+    <img
+        id="lightbox-img"
+        class="max-w-[90vw] max-h-[90vh] object-contain"
+        alt=""
+    />
+</div>
+
+<!-- Script para manejar el lightbox -->
+<script type="module">
+    const overlay = document.getElementById("lightbox-overlay");
+    const overlayImg = document.getElementById("lightbox-img");
+
+    document.querySelectorAll(".lightbox-trigger").forEach((el) => {
+        el.addEventListener("click", () => {
+            const src = el.src;
+            const alt = el.alt || "Imagen ampliada";
+            overlayImg.src = src;
+            overlayImg.alt = alt;
+            overlay.style.opacity = "1";
+            overlay.style.zIndex = "10";
+        });
+    });
+
+    overlay.addEventListener("click", () => {
+        overlay.style.opacity = "0";
+        setTimeout(() => {
+            overlayImg.src = "";
+            overlay.style.zIndex = "-1";
+        }, 300); // Esperar a que la transición termine
+    });
+
+    document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") {
+            overlay.style.opacity = "0";
+            setTimeout(() => {
+                overlayImg.src = "";
+                overlay.style.zIndex = "-1";
+            }, 300); // Esperar a que la transición termine
+        }
+    });
+</script>

@@ -1,0 +1,116 @@
+@import "tailwindcss";
+
+@theme {
+    --color-c-gray: #222;
+    --color-c-black: #111;
+
+    --font-oswald: "Oswald", "sans-serif";
+}
+
+body {
+    min-height: 100vh;
+    background-color: var(--color-c-black);
+    font-family: var(--font-oswald);
+    box-sizing: border-box;
+}
+
+.pair-12\.5 {
+    width: calc(25% - 0.750rem);
+}
+
+.pair-15 {
+    width: calc(30% - 0.750rem);
+}
+
+.pair-20 {
+    width: calc(40% - 0.750rem);
+}
+
+.pair-25 {
+    width: calc(50% - 0.750rem);
+}
+
+.pair-35 {
+    width: calc(70% - 0.750rem);
+}
+
+.pair-30 {
+    width: calc(60% - 0.750rem);
+}
+
+.pair-37\.5 {
+    width: calc(75% - 0.750rem);
+}
+
+.pair-50 {
+    width: calc(100% - 0.750rem);
+}
+
+.h-bya {
+    height: auto;
+}
+
+@media (min-width: 640px) {
+    .h-bya {
+        height: 340px;
+    }
+}
+
+@media (min-width: 1279px) {
+    .h-bya {
+        height: 430px;
+    }
+
+    .pair-12\.5 {
+        width: calc(12.5% - 0.750rem);
+    }
+    .pair-25 {
+        width: calc(25% - 0.750rem);
+    }
+
+    .pair-20 {
+        width: calc(20% - 0.750rem);
+    }
+
+    .pair-30 {
+        width: calc(30% - 0.750rem);
+    }
+
+    .pair-37\.5 {
+        width: calc(37.5% - 0.750rem);
+    }
+    .pair-35 {
+        width: calc(35% - 0.750rem);
+    }
+    .pair-15 {
+        width: calc(15% - 0.750rem);
+    }
+
+    .pair-50 {
+        width: calc(50% - 0.750rem);
+    }
+}
+
+@font-face {
+    font-family: "Oswald";
+    src: url("/fonts/Oswald-Regular.ttf") format("truetype");
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Oswald";
+    src: url("/fonts/Oswald-SemiBold.ttf") format("truetype");
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Oswald";
+    src: url("/fonts/Oswald-Medium.ttf") format("truetype");
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}

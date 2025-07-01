@@ -1,0 +1,19 @@
+---
+const { inPage } = Astro.props;
+---
+
+<div
+    class="bg-c-gray h-16 px-4 md:px-6 w-full text-white mb-8 flex flex-row items-center relative"
+>
+    <div class="flex flex-row items-center gap-4 md:gap-6">
+        <a href="/" class="uppercase text-lg font-medium">WORK</a>
+        <!-- <a href="/contact" class="uppercase text-lg font-medium">CONTACT</a> -->
+    </div>
+    {
+        inPage && (
+            <h1 class="text-xl md:text-2xl font-bold text-c-white uppercase absolute right-4 md:right-1/2 md:transform md:translate-x-1/2">
+                Tatiana Schejtman
+            </h1>
+        )
+    }
+</div>

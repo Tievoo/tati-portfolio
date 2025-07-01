@@ -1,0 +1,37 @@
+---
+import Image from "astro/components/Image.astro";
+import { Images } from "../data/Images";
+import Lightbox from "./lightbox.astro";
+
+const pageName = Astro.props["name"];
+const images = Images[pageName] || [];
+const { horWidth = 37.5, verWidth = 12.5 } = Astro.props;
+---
+
+<div id="collage" class="flex flex-wrap w-full max-w-screen pl-[calc(5vw_+_0.750rem)] pr-[5vw] gap-3">
+    {
+        images.map((img) => {
+            const w1 = img.width!;
+            const h1 = img.height!;
+
+            const divWidth = img.orientation === "hor" ? horWidth : verWidth;
+
+            const pctClass = `pair-${divWidth}`;
+
+            return (
+                <div style={`aspect-ratio: ${w1}/${h1};`} class={pctClass}>
+                    <Image
+                        src={img.src}
+                        alt={img.alt}
+                        width={w1}
+                        height={h1}
+                        class="w-full h-full object-cover cursor-pointer lightbox-trigger"
+                        loading="eager"
+                    />
+                </div>
+            );
+        })
+    }
+</div>
+
+<Lightbox />

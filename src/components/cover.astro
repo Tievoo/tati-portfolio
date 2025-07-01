@@ -1,0 +1,20 @@
+---
+import Image from "astro/components/Image.astro";
+ 
+const { src, alt, width=600, height=338, title, subtitle, path } = Astro.props.data;  
+---
+
+<a href={path} class="relative">
+    <div class="group absolute bg-black/0 hover:bg-black/70 transition-colors z-0 w-full h-full flex flex-col gap-4 items-center justify-center">
+        <span class="text-white font-medium text-lg uppercase text-center absolute">{title}</span>
+        <span class="text-white font-medium uppercase mt-12 opacity-0 group-hover:opacity-80 transition-opacity">{subtitle}</span>
+    </div>
+    <Image
+        src={src}
+        alt={alt}
+        width={width}
+        height={height}
+        loading="eager"
+        class=""
+    />
+</a>
