@@ -1,0 +1,88 @@
+---
+import Image from "astro/components/Image.astro";
+import { Images } from "../data/Images";
+
+
+const pageName = "bya"
+const imagesBefore = Images[pageName] || [];
+const imagesAfter = Images[`${pageName}_a`] || [];
+---
+<head>
+  {imagesAfter.map((img) => (
+    <link rel="preload" as="image" href={img?.src?.src} />
+  ))}
+</head>
+<span class="text-white text-center text-xl lg:text-3xl font-medium ">
+    Click to edit!
+</span>
+
+<div id="collage" class="flex flex-wrap w-full max-w-screen pl-[calc(5vw_+_0.750rem)] pr-[5vw] gap-4">
+    {
+        imagesBefore.map((img, index) => {
+            const w1 = img.width!;
+            const h1 = img.height!;
+
+            return (
+                <div style={`aspect-ratio: ${w1}/${h1};`} class="h-bya">
+                    <Image
+                        src={img.src.src}
+                        alt={img.alt}
+                        width={w1}
+                        height={h1}
+                        class="w-full h-full object-cover cursor-pointer"
+                        loading="eager"
+                        data-after-src={imagesAfter[index]?.src.src || ""}
+                        data-after-alt={imagesAfter[index]?.alt || ""}
+                        data-current="before"
+                        data-before-src={img.src.src || ""}
+                        data-before-alt={img.alt || ""}
+                    />
+                </div>
+            );
+        })
+    }
+</div>
+<script>
+    const preloadImages = () => {
+        document.querySelectorAll('.h-bya img').forEach(img => {
+            const afterSrc = img.getAttribute('data-after-src');
+            if (afterSrc) {
+                const i = new Image();
+                i.src = afterSrc;
+                i.decoding = "async";
+                i.onload = () => {
+                    // Ensures the image is decoded
+                    i.decode().catch(() => {});
+                };
+            }
+        });
+    };
+
+    window.addEventListener("load", preloadImages);
+</script>
+
+<script>
+    document.querySelectorAll('.h-bya img').forEach(img => {
+        img.addEventListener('click', () => {
+            // Change from before to after
+            const htmlImg = img as HTMLImageElement;
+            const afterSrc = htmlImg.getAttribute('data-after-src');
+            const afterAlt = htmlImg.getAttribute('data-after-alt');
+            const beforeSrc = htmlImg.getAttribute('data-before-src');
+            const beforeAlt = htmlImg.getAttribute('data-before-alt');
+            const current = htmlImg.getAttribute('data-current');
+
+            if (current === 'before') {
+                htmlImg.src = afterSrc || beforeSrc || "";
+                htmlImg.alt = afterAlt || beforeAlt || "";
+                htmlImg.setAttribute('data-current', 'after');
+            } else {
+                htmlImg.src = beforeSrc || "";
+                htmlImg.alt = beforeAlt || "";
+                htmlImg.setAttribute('data-current', 'before');
+            }
+
+
+        });
+    });
+</script>

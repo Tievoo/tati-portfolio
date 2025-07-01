@@ -46,7 +46,21 @@ body {
     width: calc(100% - 0.750rem);
 }
 
+.h-bya {
+    height: auto;
+}
+
+@media (min-width: 640px) {
+    .h-bya {
+        height: 340px;
+    }
+}
+
 @media (min-width: 1279px) {
+    .h-bya {
+        height: 450px;
+    }
+
     .pair-12\.5 {
         width: calc(12.5% - 0.750rem);
     }
