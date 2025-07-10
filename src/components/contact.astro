@@ -1,0 +1,76 @@
+---
+import Base from "../layouts/base.astro";
+import LinkedIn from "../assets/svg/linkedin.svg";
+import Instagram from "../assets/svg/instagram.svg";
+import Mail from "../assets/svg/mail.svg";
+
+const socials = [
+    {
+        name: "Email",
+        url: "mailto:tatischejtman964@gmail.com",
+        label: "tatischejtman964@gmail.com",
+        icon: Mail,
+    },
+    {
+        name: "Instagram",
+        url: "https://www.instagram.com/tatixyz.ph",
+        label: "@tatixyz.ph",
+        icon: Instagram,
+    },
+    {
+        name: "LinkedIn",
+        url: "https://www.linkedin.com/in/tati-sch",
+        label: "Tatiana Schejtman",
+        icon: LinkedIn,
+    },
+];
+---
+
+<button id="contact-button" class="uppercase text-lg font-medium cursor-pointer">
+    Contact
+</button>
+<div
+    id="contact"
+    class="flex justify-center items-center h-screen w-screen max-w-full absolute bg-black/50 absolute top-0 left-0 -z-1 transition-opacity duration-300 ease-in-out opacity-0"
+>
+    <div class="p-5 bg-c-gray rounded-xl">
+        <h1 class="text-3xl md:text-4xl font-bold mb-4 uppercase">Contacto</h1>
+        <div class="flex flex-col w-full">
+            {
+                socials.map((social) => (
+                    <a
+                        href={social.url}
+                        class="flex items-center mb-4"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        <social.icon class="mt-1 mr-2" />
+                        <span class="text-xl md:text-2xl font-medium">
+                            {social.label}
+                        </span>
+                    </a>
+                ))
+            }
+        </div>
+    </div>
+</div>
+
+<script>
+  const contactButton = document.getElementById("contact-button");
+  const contactDialog = document.getElementById("contact");
+
+  contactButton?.addEventListener("click", () => {
+    contactDialog?.classList.add("opacity-100", "z-10");
+    contactDialog?.classList.remove("opacity-0", "-z-1");
+    document.body.style.overflow = contactDialog?.classList.contains("opacity-0") ? "" : "hidden";
+  });
+
+  contactDialog?.addEventListener("click", (e) => {
+    // Si clickeaste directamente en el fondo (overlay), cerrar
+    if (e.target === contactDialog) {
+      contactDialog.classList.add("opacity-0", "-z-1");
+      contactDialog.classList.remove("opacity-100", "z-10");
+      document.body.style.overflow = "";
+    }
+  });
+</script>

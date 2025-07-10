@@ -1,13 +1,16 @@
 ---
+import Contact from "./contact.astro";
+
 const { inPage } = Astro.props;
 ---
 
 <div
     class="bg-c-gray h-16 px-4 md:px-6 w-full text-white mb-8 flex flex-row items-center relative"
 >
-    <div class="flex flex-row items-center gap-4 md:gap-6">
+    <div class="flex flex-row items-center gap-4 md:gap-6 ">
         <a href="/" class="uppercase text-lg font-medium">WORK</a>
         <!-- <a href="/contact" class="uppercase text-lg font-medium">CONTACT</a> -->
+         <Contact />
     </div>
     {
         inPage && (
