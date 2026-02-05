@@ -53,5 +53,5 @@ export const Images : Record<string, GalleryPic[]> = {
     naturaleza: importPics(imageLoaders.naturaleza, 'naturaleza'),
     fotoproducto: importPics(imageLoaders.fotoproducto, 'fotoproducto'),
     bya: importPics(imageLoaders.bya, 'bya'),
-    bya_a: importPics(imageLoaders.bya_a, 'bya_a'),
+    bya_a: importPics(imageLoaders.bya_a, 'bya'),
 }

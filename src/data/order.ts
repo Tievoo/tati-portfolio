@@ -4,11 +4,13 @@ export const swaps: Record<string, [string, string][]> = {
         ["2", "16"],
         ["6", "12"],
         // ["4", "7"],
-        ["7", "19"],
-        ["8", "18"]
+        ["7", "18"],
+        ["8", "19"]
     ],
     naturaleza: [],
     fotoproducto: [],
-    bya: [],
-    bya_a: [],
+    bya: [
+        ["1", "11"],
+        ["9", "10"]
+    ],
 };
