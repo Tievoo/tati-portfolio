@@ -3,8 +3,8 @@
   "type": "module",
   "version": "0.0.1",
   "scripts": {
-    "dev": "astro dev",
-    "build": "astro build",
+    "dev": "node scripts/sync-public-assets.mjs && astro dev",
+    "build": "node scripts/sync-public-assets.mjs && astro build",
     "preview": "astro preview",
     "astro": "astro"
   },
@@ -12,6 +12,7 @@
     "@tailwindcss/vite": "^4.1.8",
     "astro": "5.10.0",
     "image-size": "^2.0.2",
-    "tailwindcss": "^4.1.8"
+    "tailwindcss": "^4.1.8",
+    "yaml": "^2.8.1"
   }
 }

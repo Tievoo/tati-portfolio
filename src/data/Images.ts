@@ -1,6 +1,6 @@
 import type { ImageMetadata } from "astro";
 import type { GalleryPic } from "../types";
-import { swaps } from "./order";
+import { getByaOrderPairs, getOrderedFilenames } from "./gallery-order";
 
 const imageLoaders = {
     retrato: () => import.meta.glob('../assets/retrato/*.png', { eager: true, import: 'default' }),
@@ -12,7 +12,6 @@ const imageLoaders = {
 
 function importPics(glob: () => Record<string, any>, galleryName: string) {
     const entries = Object.entries(glob());
-    const gallerySwaps = swaps[galleryName] || [];
     
     const imageMap = new Map<string, GalleryPic>();
     
@@ -32,20 +31,21 @@ function importPics(glob: () => Record<string, any>, galleryName: string) {
         });
     }
 
-    // Ordenar por número primero
     const sorted = Array.from(imageMap.values()).sort((a, b) => a.num - b.num);
-    
-    // Aplicar swaps
-    for (const [a, b] of gallerySwaps) {
-        const indexA = sorted.findIndex(img => img.num === parseInt(a, 10));
-        const indexB = sorted.findIndex(img => img.num === parseInt(b, 10));
-        if (indexA !== -1 && indexB !== -1) {
-            [sorted[indexA], sorted[indexB]] = [sorted[indexB], sorted[indexA]];
-        }
-    }
-    
-    return sorted;
+    const filenames = sorted.map((img) => `${img.num}.png`);
+    const orderedNames = getOrderedFilenames(galleryName, filenames);
+
+    const ordered = orderedNames
+        .map((name) => {
+            const key = name.replace(".png", "");
+            return imageMap.get(key);
+        })
+        .filter((entry): entry is GalleryPic => Boolean(entry));
+
+    return ordered.length ? ordered : sorted;
 }
+
+export const ByaPairs = getByaOrderPairs();
 
 
 export const Images : Record<string, GalleryPic[]> = {

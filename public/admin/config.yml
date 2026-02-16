@@ -1,0 +1,81 @@
+backend:
+  name: git-gateway
+  branch: master
+  accept_roles:
+    - admin
+
+media_folder: "src/assets"
+public_folder: "/assets"
+
+local_backend: true
+
+collections:
+  - name: "gallery_order"
+    label: "Gallery Order"
+    format: "yaml"
+    files:
+      - name: "retrato"
+        label: "Retrato"
+        file: "src/content/gallery-orders/retrato.yml"
+        fields:
+          - label: "Order"
+            name: "order"
+            widget: "list"
+            allow_add: true
+            field:
+              label: "Image"
+              name: "image"
+              widget: "image"
+              media_folder: "src/assets/retrato"
+              public_folder: "/assets/retrato"
+      - name: "naturaleza"
+        label: "Naturaleza"
+        file: "src/content/gallery-orders/naturaleza.yml"
+        fields:
+          - label: "Order"
+            name: "order"
+            widget: "list"
+            allow_add: true
+            field:
+              label: "Image"
+              name: "image"
+              widget: "image"
+              media_folder: "src/assets/naturaleza"
+              public_folder: "/assets/naturaleza"
+      - name: "fotoproducto"
+        label: "Fotoproducto"
+        file: "src/content/gallery-orders/fotoproducto.yml"
+        fields:
+          - label: "Order"
+            name: "order"
+            widget: "list"
+            allow_add: true
+            field:
+              label: "Image"
+              name: "image"
+              widget: "image"
+              media_folder: "src/assets/fotoproducto"
+              public_folder: "/assets/fotoproducto"
+      - name: "bya"
+        label: "Antes y Después"
+        file: "src/content/gallery-orders/bya.yml"
+        fields:
+          - label: "Pairs"
+            name: "items"
+            widget: "list"
+            allow_add: true
+            fields:
+              - label: "Before"
+                name: "before"
+                widget: "image"
+                media_folder: "src/assets/bya/b"
+                public_folder: "/assets/bya/b"
+              - label: "After"
+                name: "after"
+                widget: "image"
+                media_folder: "src/assets/bya/a"
+                public_folder: "/assets/bya/a"
+              - label: "Alt"
+                name: "alt"
+                widget: "string"
+                required: false

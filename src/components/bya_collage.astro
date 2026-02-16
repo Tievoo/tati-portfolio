@@ -1,11 +1,32 @@
 ---
 import Image from "astro/components/Image.astro";
-import { Images } from "../data/Images";
+import { Images, ByaPairs } from "../data/Images";
 
 
 const pageName = "bya"
 const imagesBefore = Images[pageName] || [];
 const imagesAfter = Images[`${pageName}_a`] || [];
+const orderedPairs = ByaPairs;
+
+const byName = (name?: string) => name?.replace(".png", "");
+const getByFilename = (list: typeof imagesBefore, filename?: string) => {
+  const key = byName(filename);
+  if (!key) return undefined;
+  return list.find((img) => String(img.num) === key);
+};
+
+const resolvedPairs = orderedPairs.map((pair, index) => {
+  const fallbackBefore = imagesBefore[index];
+  const fallbackAfter = imagesAfter[index];
+  const before = getByFilename(imagesBefore, pair.before) || fallbackBefore;
+  const after = getByFilename(imagesAfter, pair.after) || fallbackAfter;
+
+  return {
+    before,
+    after,
+    alt: pair.alt || before?.alt || after?.alt || ""
+  };
+}).filter((pair) => pair.before || pair.after);
 ---
 <head>
   {imagesAfter.map((img) => (
@@ -18,24 +39,29 @@ const imagesAfter = Images[`${pageName}_a`] || [];
 
 <div id="collage" class="flex flex-wrap w-full max-w-screen pl-[calc(5vw_+_0.750rem)] pr-[5vw] gap-4">
     {
-        imagesBefore.map((img, index) => {
-            const w1 = img.width!;
-            const h1 = img.height!;
+        resolvedPairs.map((pair) => {
+            if (!pair.before && !pair.after) {
+                return null;
+            }
+
+            const img = pair.before || pair.after;
+            const w1 = img?.width || 1;
+            const h1 = img?.height || 1;
 
             return (
                 <div style={`aspect-ratio: ${w1}/${h1};`} class="h-bya">
                     <Image
-                        src={img.src.src}
-                        alt={img.alt}
+                        src={pair.before?.src?.src || pair.after?.src?.src || ""}
+                        alt={pair.alt}
                         width={w1}
                         height={h1}
                         class="w-full h-full object-cover cursor-pointer"
                         loading="eager"
-                        data-after-src={imagesAfter[index]?.src.src || ""}
-                        data-after-alt={imagesAfter[index]?.alt || ""}
+                        data-after-src={pair.after?.src?.src || ""}
+                        data-after-alt={pair.after?.alt || pair.alt}
                         data-current="before"
-                        data-before-src={img.src.src || ""}
-                        data-before-alt={img.alt || ""}
+                        data-before-src={pair.before?.src?.src || ""}
+                        data-before-alt={pair.before?.alt || pair.alt}
                     />
                 </div>
             );
