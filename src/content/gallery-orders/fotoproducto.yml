@@ -1,2 +1,4 @@
-cover: ""
-order: []
+cover: /assets/covers/fotoproducto.png
+order:
+  - /assets/fotoproducto/1.png
+  - /assets/fotoproducto/2.png

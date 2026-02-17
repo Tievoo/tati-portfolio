@@ -1,2 +1,17 @@
-cover: ""
-order: []
+cover: /assets/covers/naturaleza.png
+order:
+  - /assets/naturaleza/1.png
+  - /assets/naturaleza/2.png
+  - /assets/naturaleza/3.png
+  - /assets/naturaleza/4.png
+  - /assets/naturaleza/5.png
+  - /assets/naturaleza/6.png
+  - /assets/naturaleza/7.png
+  - /assets/naturaleza/8.png
+  - /assets/naturaleza/9.png
+  - /assets/naturaleza/10.png
+  - /assets/naturaleza/11.png
+  - /assets/naturaleza/12.png
+  - /assets/naturaleza/13.png
+  - /assets/naturaleza/14.png
+  - /assets/naturaleza/15.png

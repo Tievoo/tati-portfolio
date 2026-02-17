@@ -1,4 +1,24 @@
-cover: ""
+cover: /assets/covers/bya.png
 items:
   - before: /assets/bya/b/1.png
     after: /assets/bya/a/1.png
+  - before: /assets/bya/b/2.png
+    after: /assets/bya/a/2.png
+  - before: /assets/bya/b/3.png
+    after: /assets/bya/a/3.png
+  - before: /assets/bya/b/4.png
+    after: /assets/bya/a/4.png
+  - before: /assets/bya/b/5.png
+    after: /assets/bya/a/5.png
+  - before: /assets/bya/b/6.png
+    after: /assets/bya/a/6.png
+  - before: /assets/bya/b/7.png
+    after: /assets/bya/a/7.png
+  - before: /assets/bya/b/8.png
+    after: /assets/bya/a/8.png
+  - before: /assets/bya/b/9.png
+    after: /assets/bya/a/9.png
+  - before: /assets/bya/b/10.png
+    after: /assets/bya/a/10.png
+  - before: /assets/bya/b/11.png
+    after: /assets/bya/a/11.png
