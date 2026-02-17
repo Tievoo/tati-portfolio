@@ -1,6 +1,5 @@
 import { readFileSync } from "node:fs";
-import { fileURLToPath } from "node:url";
-import { basename, dirname, resolve } from "node:path";
+import { basename, resolve } from "node:path";
 import YAML from "yaml";
 
 type OrderConfig = {
@@ -14,8 +13,7 @@ type OrderConfig = {
     order?: Array<string | { image?: string }>;
 };
 
-const __dirname = dirname(fileURLToPath(import.meta.url));
-const ordersRoot = resolve(__dirname, "../content/gallery-orders");
+const ordersRoot = resolve(process.cwd(), "src/content/gallery-orders");
 
 const configCache = new Map<string, OrderConfig>();
 

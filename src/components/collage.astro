@@ -13,7 +13,6 @@ const { horWidth = 37.5, verWidth = 12.5 } = Astro.props;
         images.map((img) => {
             const w1 = img.width!;
             const h1 = img.height!;
-            console.log(`Image: ${img.alt}, orientation: ${img.orientation}`);
 
             const divWidth = img.orientation === "hor" ? horWidth : verWidth;
 
