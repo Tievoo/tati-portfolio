@@ -20,6 +20,9 @@ pnpm-debug.log*
 # macOS-specific files
 .DS_Store
 
+# synced public assets (generated at build time)
+public/assets/
+
 # jetbrains setting folder
 .idea/
 =======

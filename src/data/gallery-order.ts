@@ -4,6 +4,7 @@ import { basename, dirname, resolve } from "node:path";
 import YAML from "yaml";
 
 type OrderConfig = {
+    cover?: string;
     items?: Array<{
         image?: string;
         before?: string;
@@ -90,4 +91,11 @@ export function getByaOrderPairs(): Array<{ before?: string; after?: string; alt
             alt: item.alt?.trim() || undefined
         }))
         .filter((item) => item.before || item.after);
+}
+
+export function getCoverPath(galleryName: string): string | undefined {
+    const config = loadYamlConfig(`${galleryName}.yml`);
+    const cover = config?.cover?.trim();
+    if (!cover) return undefined;
+    return cover;
 }
