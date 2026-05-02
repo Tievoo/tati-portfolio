@@ -1,0 +1,26 @@
+sections:
+  - slug: retrato
+    title: Retrato
+    subtitle: 2019-2025
+    type: gallery
+    cover: /assets/covers/retrato.png
+    horWidth: 35
+    verWidth: 15
+  - slug: naturaleza
+    title: Naturaleza
+    subtitle: 2019-2025
+    type: gallery
+    cover: /assets/covers/naturaleza.png
+    horWidth: 25
+    verWidth: 12.5
+  - slug: bya
+    title: Antes y Después
+    subtitle: 2021-2025
+    type: bya
+    cover: /assets/covers/bya.png
+  - slug: fotoproducto
+    title: Fotoproducto
+    subtitle: 2019-2025
+    type: gallery
+    cover: /assets/covers/fotoproducto.png
+    horWidth: 50

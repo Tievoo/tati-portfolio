@@ -10,84 +10,99 @@ public_folder: "/assets"
 local_backend: true
 
 collections:
-  - name: "gallery_order"
-    label: "Gallery Order"
-    format: "yaml"
+  - name: "sections"
+    label: "Sections"
+    label_singular: "Section"
+    description: "Add, rename, reorder, or remove the sections shown on the homepage. Drag entries to reorder."
     files:
-      - name: "retrato"
-        label: "Retrato"
-        file: "src/content/gallery-orders/retrato.yml"
+      - name: "sections"
+        label: "Sections list"
+        file: "src/content/sections.yml"
         fields:
-          - label: "Cover"
-            name: "cover"
-            widget: "image"
-            required: false
-            media_folder: "/src/assets/covers"
-            public_folder: "/assets/covers"
-            hint: "Pick a cover image for this gallery on the homepage"
-          - label: "Order"
-            name: "order"
+          - label: "Sections"
+            name: "sections"
             widget: "list"
             allow_add: true
-            field:
-              label: "Image"
-              name: "image"
-              widget: "image"
-              media_folder: "/src/assets/retrato"
-              public_folder: "/assets/retrato"
-      - name: "naturaleza"
-        label: "Naturaleza"
-        file: "src/content/gallery-orders/naturaleza.yml"
-        fields:
-          - label: "Cover"
-            name: "cover"
-            widget: "image"
-            required: false
-            media_folder: "/src/assets/covers"
-            public_folder: "/assets/covers"
-            hint: "Pick a cover image for this gallery on the homepage"
-          - label: "Order"
-            name: "order"
-            widget: "list"
-            allow_add: true
-            field:
-              label: "Image"
-              name: "image"
-              widget: "image"
-              media_folder: "/src/assets/naturaleza"
-              public_folder: "/assets/naturaleza"
-      - name: "fotoproducto"
-        label: "Fotoproducto"
-        file: "src/content/gallery-orders/fotoproducto.yml"
-        fields:
-          - label: "Cover"
-            name: "cover"
-            widget: "image"
-            required: false
-            media_folder: "/src/assets/covers"
-            public_folder: "/assets/covers"
-            hint: "Pick a cover image for this gallery on the homepage"
-          - label: "Order"
-            name: "order"
-            widget: "list"
-            allow_add: true
-            field:
-              label: "Image"
-              name: "image"
-              widget: "image"
-              media_folder: "/src/assets/fotoproducto"
-              public_folder: "/assets/fotoproducto"
+            summary: "{{fields.title}}  —  /{{fields.slug}}"
+            fields:
+              - label: "Title"
+                name: "title"
+                widget: "string"
+                hint: "Display name shown on the homepage and at the top of the section page (e.g. 'Paisajes')."
+              - label: "Slug"
+                name: "slug"
+                widget: "string"
+                hint: "URL path — lowercase, no spaces (e.g. 'paisajes' for /paisajes). DO NOT change after creation: it would break existing links and disconnect uploaded images."
+                pattern: ['^[a-z0-9-]+$', 'Use only lowercase letters, numbers, and hyphens']
+              - label: "Subtitle"
+                name: "subtitle"
+                widget: "string"
+                required: false
+                hint: "Optional small text shown under the title (e.g. '2019-2025')."
+              - label: "Type"
+                name: "type"
+                widget: "select"
+                options: ["gallery", "bya"]
+                default: "gallery"
+                hint: "Use 'gallery' for new sections. 'bya' is reserved for the existing 'Antes y Después' page; do not use it for new sections."
+              - label: "Cover"
+                name: "cover"
+                widget: "image"
+                required: false
+                media_folder: "/src/assets/covers"
+                public_folder: "/assets/covers"
+                hint: "Image shown as this section's cover on the homepage."
+              - label: "Horizontal image width (advanced)"
+                name: "horWidth"
+                widget: "number"
+                required: false
+                value_type: "float"
+                hint: "Layout tuning — leave blank for the default (37.5)."
+              - label: "Vertical image width (advanced)"
+                name: "verWidth"
+                widget: "number"
+                required: false
+                value_type: "float"
+                hint: "Layout tuning — leave blank for the default (12.5)."
+
+  - name: "gallery_order"
+    label: "Gallery Content"
+    label_singular: "Gallery"
+    description: "Pick a cover and arrange the image order for each gallery. To add a new gallery, first create the matching section under 'Sections', then come back here and add an entry with the same slug."
+    folder: "src/content/gallery-orders"
+    format: "yaml"
+    extension: "yml"
+    create: true
+    slug: "{{slug}}"
+    identifier_field: "slug"
+    summary: "{{slug}}"
+    fields:
+      - label: "Slug"
+        name: "slug"
+        widget: "string"
+        hint: "Must match the slug of a section defined under 'Sections' (e.g. 'retrato', 'paisajes')."
+        pattern: ['^[a-z0-9-]+$', 'Use only lowercase letters, numbers, and hyphens']
+      - label: "Order"
+        name: "order"
+        widget: "list"
+        required: false
+        allow_add: true
+        hint: "Upload images and drag to reorder. Images upload into a folder matching the slug above."
+        field:
+          label: "Image"
+          name: "image"
+          widget: "image"
+          media_folder: "/src/assets/{{slug}}"
+          public_folder: "/assets/{{slug}}"
+
+  - name: "bya"
+    label: "Antes y Después"
+    description: "Manage the before/after pairs for the Antes y Después page."
+    files:
       - name: "bya"
         label: "Antes y Después"
-        file: "src/content/gallery-orders/bya.yml"
+        file: "src/content/bya.yml"
         fields:
-          - label: "Cover"
-            name: "cover"
-            widget: "image"
-            required: false
-            media_folder: "/src/assets/covers"
-            public_folder: "/assets/covers"
-            hint: "Pick a cover image for this gallery on the homepage"
           - label: "Pairs"
             name: "items"
             widget: "list"

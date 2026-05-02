@@ -1,0 +1,17 @@
+---
+// Decap CMS bootstrap. Lives here (not in public/admin/) so it takes
+// precedence over the [slug].astro dynamic route, which otherwise
+// intercepts /admin/ and 404s in dev. config.yml stays in public/admin/.
+---
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Content Manager</title>
+  </head>
+  <body>
+    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js" is:inline></script>
+    <script src="https://unpkg.com/decap-cms@3.6.3/dist/decap-cms.js" is:inline></script>
+  </body>
+</html>

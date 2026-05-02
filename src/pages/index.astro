@@ -9,7 +9,7 @@ import { Covers } from "../data/Covers";
 <Base pageTitle="Tatiana Schejtman">
     <div class="flex flex-col gap-4 items-center justify-center text-white mx-4 xl:mx-0 mb-4">
         <h1 class="text-3xl md:text-4xl font-medium text-c-white uppercase mb-3">Tatiana Schejtman</h1>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:[&>a:last-child:nth-child(odd)]:col-span-2 md:[&>a:last-child:nth-child(odd)]:justify-self-center">
             {Covers.map((cover) => (
                 <Cover
                     data={cover}

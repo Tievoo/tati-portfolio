@@ -14,22 +14,27 @@ type OrderConfig = {
 };
 
 const ordersRoot = resolve(process.cwd(), "src/content/gallery-orders");
+const byaPath = resolve(process.cwd(), "src/content/bya.yml");
 
 const configCache = new Map<string, OrderConfig>();
 
-function loadYamlConfig(fileName: string): OrderConfig | undefined {
-    if (configCache.has(fileName)) {
-        return configCache.get(fileName);
+function configPathFor(galleryName: string): string {
+    if (galleryName === "bya") return byaPath;
+    return resolve(ordersRoot, `${galleryName}.yml`);
+}
+
+function loadYamlConfig(galleryName: string): OrderConfig | undefined {
+    if (configCache.has(galleryName)) {
+        return configCache.get(galleryName);
     }
 
     try {
-        const configPath = resolve(ordersRoot, fileName);
-        const raw = readFileSync(configPath, "utf-8");
+        const raw = readFileSync(configPathFor(galleryName), "utf-8");
         const parsed = YAML.parse(raw) as OrderConfig;
-        configCache.set(fileName, parsed || {});
+        configCache.set(galleryName, parsed || {});
         return parsed || {};
     } catch {
-        configCache.set(fileName, {});
+        configCache.set(galleryName, {});
         return {};
     }
 }
@@ -42,7 +47,7 @@ function normalizeFilename(value?: string) {
 }
 
 export function getOrderedFilenames(galleryName: string, filenames: string[]): string[] {
-    const config = loadYamlConfig(`${galleryName}.yml`);
+    const config = loadYamlConfig(galleryName);
     const order = (config?.order || [])
         .map((entry) => {
             if (typeof entry === "string") {
@@ -79,7 +84,7 @@ export function getOrderedFilenames(galleryName: string, filenames: string[]): s
 
 export function getByaOrderPairs(): Array<{ before?: string; after?: string; alt?: string }>
 {
-    const config = loadYamlConfig("bya.yml");
+    const config = loadYamlConfig("bya");
     const items = config?.items || [];
 
     return items
@@ -92,7 +97,7 @@ export function getByaOrderPairs(): Array<{ before?: string; after?: string; alt
 }
 
 export function getCoverPath(galleryName: string): string | undefined {
-    const config = loadYamlConfig(`${galleryName}.yml`);
+    const config = loadYamlConfig(galleryName);
     const cover = config?.cover?.trim();
     if (!cover) return undefined;
     return cover;

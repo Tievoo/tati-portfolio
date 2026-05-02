@@ -1,4 +1,4 @@
-cover: /assets/covers/retrato.png
+slug: retrato
 order:
   - /assets/retrato/15.png
   - /assets/retrato/16.png
@@ -6,7 +6,7 @@ order:
   - /assets/retrato/4.png
   - /assets/retrato/5.png
   - /assets/retrato/12.png
-  - /assets/retrato/18png
+  - /assets/retrato/18.png
   - /assets/retrato/19.png
   - /assets/retrato/9.png
   - /assets/retrato/10.png
